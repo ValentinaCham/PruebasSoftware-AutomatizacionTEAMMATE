@@ -7,7 +7,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def get_driver():
-    chromedriver_path = os.getenv("CHROMEDRIVER_PATH")
     options = Options()
-    options.add_argument("--headless")
-    return webdriver.Chrome(service=Service(chromedriver_path), options=options)
+    options.add_experimental_option("detach", True)
+    options.add_argument("--start-maximized")
+
+    driver = webdriver.Chrome(options=options)
+    return driver
